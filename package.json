@@ -1,0 +1,24 @@
+{
+  "name": "yo",
+  "version": "0.1.0",
+  "description": "yo is yourator optimization",
+  "main": "index.js",
+  "repository": "git@github.com:AllJointTW/yo.git",
+  "author": "TZU-YEN, CHANG <try_love_tom@alljoint.tw>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dayjs": "^1.8.12",
+    "puppeteer": "^1.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}
