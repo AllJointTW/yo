@@ -64,8 +64,11 @@ async function login (page, username, password) {
 
 async function jobOptimize (page, job) {
   await page.goto(job, { waitUntil: 'networkidle0', timeout })
-  const current = dayjs().format('YYYY/MM/DD HH:mm')
-  await page.type('input#job_published_on', current, { delay })
+  const current = dayjs()
+  const dateString = current.format('YYYY/MM/DD HH:mm')
+  const input = await page.$('input#job_published_on');
+  await input.click({ clickCount: 3 }, { delay })
+  await page.type('input#job_published_on', dateString, { delay })
   await Promise.all([
     page.click('input.button.enterprise-edit-job', { delay }),
     page.waitForNavigation({ waitUntil: 'networkidle0', timeout })
@@ -74,8 +77,11 @@ async function jobOptimize (page, job) {
 
 async function companyOptimize (page, company) {
   await page.goto(company, { waitUntil: 'networkidle0', timeout })
-  const current = dayjs().format('YYYY/MM/DD')
-  await page.type('input#company_published_on', current, { delay })
+  const current = dayjs().add(-1, 'day')
+  const dateString = current.format('YYYY/MM/DD')
+  const input = await page.$('input#company_published_on');
+  await input.click({ clickCount: 3 }, { delay })
+  await page.type('input#company_published_on', dateString, { delay })
   await Promise.all([
     page.click('input.button[name="commit"]', { delay }),
     page.waitForNavigation({ waitUntil: 'networkidle0', timeout })
