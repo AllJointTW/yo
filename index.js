@@ -41,7 +41,6 @@ async function bootstrap () {
     logger(`[${dayjs().format('YYYY/MM/DD HH:mm:ss')}] finished\n`)
   } catch (err) {
     logger('Error:', err.message)
-    process.exit(1)
   }
 }
 
@@ -106,4 +105,17 @@ function logger (...params) {
   }
 }
 
-bootstrap()
+function randomNumber (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
+async function main () {
+  while (true) {
+    const mins = randomNumber(60, 120)
+    await bootstrap()
+    logger(`Waiting ${mins} Mins...\n`)
+    await timer(mins * 60 * 1000)
+  }
+}
+
+main()
