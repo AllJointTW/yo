@@ -76,7 +76,7 @@ async function jobOptimize (page, job) {
 
 async function companyOptimize (page, company) {
   await page.goto(company, { waitUntil: 'networkidle0', timeout })
-  const current = dayjs().add(-1, 'day')
+  const current = dayjs().hour() > 8 ? dayjs() : dayjs().add(-1, 'day')
   const dateString = current.format('YYYY/MM/DD')
   const input = await page.$('input#company_published_on');
   await input.click({ clickCount: 3 }, { delay })
