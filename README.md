@@ -29,5 +29,5 @@ yarn # or npm install
 
 5. Run Scripts
 ```
-USERNAME=your-username PASSWORD=your-password SHOW_BROWSER=0 yarn start
+EMAIL=your-email PASSWORD=your-password SHOW_BROWSER=0 yarn start
 ```

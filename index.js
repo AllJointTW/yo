@@ -6,7 +6,7 @@ const timeout = 10 * 1000
 const delay = 50
 const width = 1280
 const height = 800
-const username = process.env.USERNAME
+const email = process.env.EMAIL
 const password = process.env.PASSWORD
 const headless = !(process.env.SHOW_BROWSER === '1')
 
@@ -21,7 +21,7 @@ async function bootstrap () {
 
     await page.setViewport({ width, height })
     await page.goto(target, { waitUntil: 'networkidle0', timeout })
-    await login(page, username, password)
+    await login(page, email, password)
 
     for (const index in jobs) {
       logger(`jobs(${Number(index) + 1}/${jobs.length})...`)
@@ -44,7 +44,7 @@ async function bootstrap () {
   }
 }
 
-async function login (page, username, password) {
+async function login (page, email, password) {
   process.stdout.write('login...')
   await page.click('a.login-btn', { delay })
   await page.waitForSelector(
@@ -52,7 +52,7 @@ async function login (page, username, password) {
     { visible: true, timeout }
   )
   await timer(1000) // waiting for animation
-  await page.type('input#user_email', username, { delay })
+  await page.type('input#user_email', email, { delay })
   await page.type('input#user_password', password, { delay })
   await Promise.all([
     page.click('div#y-login-btn', { delay }),
